@@ -20,6 +20,11 @@ jobs:
   steps:
   - checkout: self
     submodules: true
+   # Debugging step: Check if the script file exists
+  - script: |
+      echo "Checking if launch-docker.sh exists..."
+      ls -l C:/agent/_work/_tasks/AzureStaticWebApp_18aad896-e191-4720-88d6-8ced4806941a/0.248.1/
+    displayName: "Check for launch-docker.sh"
   - task: AzureStaticWebApp@0
     inputs:
       azure_static_web_apps_api_token: $(Token)
