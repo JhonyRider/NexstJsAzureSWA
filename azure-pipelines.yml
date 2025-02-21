@@ -20,10 +20,13 @@ jobs:
   steps:
   - checkout: self
     submodules: true
-   # Debugging step: Check if the script file exists
-  - script: |
-      echo "Checking if launch-docker.sh exists..."
-      ls -l C:/agent/_work/_tasks/AzureStaticWebApp_18aad896-e191-4720-88d6-8ced4806941a/0.248.1/
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        Import-Module Microsoft.PowerShell.Security -ErrorAction Stop
+        Write-Output "Checking if launch-docker.sh exists..."
+        Get-ChildItem -Path "C:/agent/_work/_tasks/AzureStaticWebApp_18aad896-e191-4720-88d6-8ced4806941a/0.248.1/"
     displayName: "Check for launch-docker.sh"
   - task: AzureStaticWebApp@0
     inputs:
